@@ -4,7 +4,10 @@ console.log(cards);
 var isFlipped = false;
 var firstCard, secondCard;
 
+
 cards.forEach( (card) => card.addEventListener("click",flip))
+
+var counter = 0;
 
 function flip(){
 
@@ -23,6 +26,7 @@ function flip(){
         check();
 
     }
+    counter++;
 }
 
 function check(){
@@ -32,10 +36,11 @@ function check(){
 }
 
 function success(){
-
+    console.log(counter);
     setTimeout(() => {
         alert("Success!!!")
     },100)
+    counter = 0;
     firstCard.removeEventListener('click',flip);
     secondCard.removeEventListener('click',flip);
     reset()
@@ -47,6 +52,7 @@ function fail() {
     setTimeout(()=>{
         firstCard.classList.remove('flip');
         secondCard.classList.remove("flip");
+        counter++;
         reset();
     },1000);
 
@@ -68,3 +74,11 @@ function reset() {
     })
 
 })();
+
+var button = document.querySelector(".reset");
+button.addEventListener("click",() => {
+    cards.forEach((card) => card.classList.remove('flip'));
+    cards.forEach( (card) => card.addEventListener("click",flip))
+
+})
+
