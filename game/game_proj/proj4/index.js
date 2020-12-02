@@ -33,10 +33,13 @@ function check(){
 
 function success(){
 
-    console.log("Success");
+    setTimeout(() => {
+        alert("Success!!!")
+    },100)
     firstCard.removeEventListener('click',flip);
     secondCard.removeEventListener('click',flip);
     reset()
+
 }
 
 function fail() {
